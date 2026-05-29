@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Notion 风格全局样式（浅色 + 暗色双主题）
+   色板：浅 #f7f6f3 / 深 #191919
+   ============================================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-notion-bg text-notion-text dark:bg-notion-dark-bg dark:text-notion-dark-text;
+  }
+
+  /* Notion 风格滚动条 */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: #d9d9d8;
+    border-radius: 3px;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c0c0be;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
+  }
+}
+
+@layer components {
+  /* ── Notion 卡片 ── */
+  .notion-card {
+    @apply bg-white dark:bg-notion-dark-card
+           rounded-notion
+           border border-notion-border dark:border-notion-dark-border
+           shadow-notion-sm
+           transition-all duration-200 ease-out;
+  }
+  .notion-card:hover {
+    @apply bg-notion-hover dark:bg-notion-dark-hover;
+  }
+
+  /* ── Notion 主按钮 ── */
+  .notion-btn-primary {
+    @apply bg-notion-text dark:bg-notion-dark-text
+           text-white dark:text-notion-dark-bg
+           font-medium text-[13px]
+           px-4 py-1.5 rounded-notion
+           hover:opacity-90
+           active:scale-[0.98]
+           transition-all duration-150;
+  }
+
+  /* ── Notion 次按钮 ── */
+  .notion-btn-secondary {
+    @apply bg-white dark:bg-notion-dark-card
+           text-notion-text dark:text-notion-dark-text
+           font-medium text-[13px]
+           px-4 py-1.5 rounded-notion
+           border border-notion-border dark:border-notion-dark-border
+           hover:bg-notion-hover dark:hover:bg-notion-dark-hover
+           active:scale-[0.98]
+           transition-all duration-150;
+  }
+
+  /* ── Notion 输入框 ── */
+  .notion-input {
+    @apply w-full px-3 py-[7px] rounded-notion
+           border border-notion-border dark:border-notion-dark-border
+           bg-white dark:bg-notion-dark-card
+           text-[14px] text-notion-text dark:text-notion-dark-text
+           placeholder:text-notion-subtle dark:placeholder:text-notion-dark-dim
+           focus:outline-none focus:border-notion-blue dark:focus:border-notion-blue
+           transition-all duration-150;
+  }
+
+  /* ── Notion select ── */
+  .notion-select {
+    @apply w-full px-3 py-[7px] rounded-notion
+           border border-notion-border dark:border-notion-dark-border
+           bg-white dark:bg-notion-dark-card
+           text-[14px] text-notion-text dark:text-notion-dark-text
+           focus:outline-none focus:border-notion-blue
+           cursor-pointer
+           transition-all duration-150;
+  }
+
+  /* ── Notion 数据表 ── */
+  .notion-table {
+    @apply w-full text-[14px];
+    border-collapse: collapse;
+  }
+  .notion-table thead th {
+    @apply text-left text-[11px] font-medium uppercase tracking-wide
+           text-notion-dim dark:text-notion-dark-dim
+           px-4 py-2.5
+           border-b border-notion-border dark:border-notion-dark-border
+           bg-notion-bg/60 dark:bg-notion-dark-bg/40;
+  }
+  .notion-table tbody td {
+    @apply px-4 py-2.5
+           border-b border-notion-border/60 dark:border-notion-dark-border/60
+           align-middle;
+  }
+  .notion-table tbody tr {
+    @apply transition-colors duration-100;
+  }
+  .notion-table tbody tr:hover {
+    @apply bg-notion-hover/60 dark:bg-notion-dark-hover/60;
+  }
+
+  /* ── 徽章标签 ── */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-[6px] text-[12px] font-medium;
+  }
+  .badge-blue    { @apply bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400; }
+  .badge-red     { @apply bg-red-50 text-red-600 dark:bg-red-500/15 dark:text-red-400; }
+  .badge-orange  { @apply bg-orange-50 text-orange-600 dark:bg-orange-500/15 dark:text-orange-400; }
+  .badge-green   { @apply bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400; }
+  .badge-purple  { @apply bg-purple-50 text-purple-600 dark:bg-purple-500/15 dark:text-purple-400; }
+  .badge-gray    { @apply bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400; }
+
+  /* ── 页面标题 ── */
+  .notion-page-title {
+    @apply text-[24px] font-bold text-notion-text dark:text-notion-dark-text
+           leading-tight;
+  }
+  .notion-section-title {
+    @apply text-[11px] font-semibold uppercase tracking-wide
+           text-notion-dim dark:text-notion-dark-dim
+           mb-3;
+  }
+
+  /* ── 标签页切换 ── */
+  .notion-tab {
+    @apply px-3 py-1.5 rounded-notion text-[13px] font-medium
+           text-notion-dim dark:text-notion-dark-dim
+           hover:bg-notion-hover dark:hover:bg-notion-dark-hover
+           transition-all duration-150;
+  }
+  .notion-tab-active {
+    @apply bg-notion-hover dark:bg-notion-dark-hover
+           text-notion-text dark:text-notion-dark-text;
+  }
+
+  /* ── 弹窗遮罩 ── */
+  .notion-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center
+           bg-notion-text/10 dark:bg-black/30
+           backdrop-blur-[2px];
+  }
+  .notion-dialog {
+    @apply bg-white dark:bg-notion-dark-card
+           rounded-[12px]
+           border border-notion-border dark:border-notion-dark-border
+           shadow-notion-md
+           w-full max-w-lg max-h-[85vh] overflow-y-auto
+           p-6;
+  }
+
+  /* ── 侧边栏 ── */
+  .sidebar-link {
+    @apply flex items-center gap-2.5 px-3 py-1.5 rounded-notion
+           text-[13px] font-medium
+           text-notion-dim dark:text-notion-dark-dim
+           hover:bg-notion-hover dark:hover:bg-notion-dark-hover
+           transition-all duration-100;
+  }
+  .sidebar-link-active {
+    @apply bg-notion-hover dark:bg-notion-dark-hover
+           text-notion-text dark:text-notion-dark-text;
+  }
+
+  /* ── 空状态 ── */
+  .notion-empty {
+    @apply text-center py-16 text-[14px]
+           text-notion-dim dark:text-notion-dark-dim;
+  }
+}
+
+@layer utilities {
+  .no-drag { -webkit-app-region: no-drag; }
+}
